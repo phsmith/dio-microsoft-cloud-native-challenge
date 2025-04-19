@@ -1,0 +1,11 @@
+/workspace/Local/bin/Debug/Local.dacpac
+/workspace/Local/bin/Debug/Local.deps.json
+/workspace/Local/bin/Debug/Local.dll
+/workspace/Local/bin/Debug/Local.pdb
+/workspace/Local/obj/Debug/Local.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/Local/obj/Debug/Model.xml
+/workspace/Local/obj/Debug/refactor.xml
+/workspace/Local/obj/Debug/postdeploy.sql
+/workspace/Local/obj/Debug/predeploy.sql
+/workspace/Local/obj/Debug/Local.dll
+/workspace/Local/obj/Debug/Local.pdb

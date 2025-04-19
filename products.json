@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Test 5",
+        "description": "Test 5",
+        "price": 0.01,
+        "image_url": "http://127.0.0.1:10000/devstoreaccount1/products/a9ab4c1e-a3b1-4248-9420-832f9559bef6.jpg"
+    },
+    {
+        "name": "Test 6",
+        "description": "Test 6",
+        "price": 0.02,
+        "image_url": "http://127.0.0.1:10000/devstoreaccount1/products/d4f913be-399a-4d61-9ab9-99c31f9df775.jpg"
+    }
+]
