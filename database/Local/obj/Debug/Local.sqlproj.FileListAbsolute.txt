@@ -9,3 +9,4 @@
 /workspace/database/Local/obj/Debug/predeploy.sql
 /workspace/database/Local/obj/Debug/Local.dll
 /workspace/database/Local/obj/Debug/Local.pdb
+/workspace/database/Local/obj/Debug/Local.sourcelink.json
