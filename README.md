@@ -14,11 +14,11 @@
   - Azurite (Azure Storage simulator)
   - Azure SQL Server
 - Create a Python virtual environment:
-  ```
+  ```sh
   python -m venv .venv
   ```
 - Install the project dependencies:
-  ```
+  ```sh
   source .venv/bin/activate
   pip install -r requirements.txt
   ```
@@ -32,3 +32,52 @@ Run the project with the command:
 streamlit run main.py
 ```
 By default, Streamlit opens port 8501 on localhost: http://localhost:8501
+
+#### :rocket: Deploy to Azure Container Apps
+
+1. Create an Azure Resource Group:
+    ```sh
+    export RG_NAME=MyResourceGroup01
+    az group create --location eastus --name $RG_NAME
+    ```
+2. Create an Azure Container Registry:
+    ```sh
+    export ACR_NAME=myregistry01
+    az acr create --name ${ACR_NAME} --resource-group ${RG_NAME} --sku Basic --admin-enabled true
+    ```
+3. Build the application Docker image:
+    ```sh
+    export IMAGE_NAME=my-streamlit-app:0.1
+    docker build -t ${IMAGE_NAME} .
+    ```
+4. Login into ACR and push the Docker image:
+    ```sh
+    az acr login -n ${ACR_NAME}
+    docker push ${IMAGE_NAME}
+    ```
+5. Create a Azure Container App and deploy the application container image:
+    ```sh
+    export REGISTRY_SERVER=${ACR_NAME}.azurecr.io
+    export REGISTRY_USERNAME=<ACR_ADMIN_USERNAME>
+    export REGISTRY_PASSWORD=<ACR_ADMIN_PASSWORD>
+
+    az containerapp up \
+      --resource-group ${RG_NAME} \
+      --name my-containerapp-01 \
+      --environment my-containerapp-env-01
+      --registry-server ${REGISTRY_SERVER}
+      --registry-username ${REGISTRY_USERNAME}
+      --registry-password ${REGISTRY_PASSWORD}
+      --image ${REGISTRY_SERVER}/${IMAGE_NAME} \
+      --ingress external \
+      --target-port 8501 \
+      --env-vars \
+          BLOB_STORAGE_CONNECTION_STRING=<BLOB_STORAGE_CONNECTION_STRING> \
+          BLOB_STORAGE_CONTAINER_NAME=<BLOB_STORAGE_CONTAINER_NAME> \
+          BLOB_STORAGE_ENDPOINT=<BLOB_STORAGE_ENDPOINT> \
+          SQL_SERVER=<SQL_SERVER> \
+          SQL_DATABASE=<SQL_DATABASE> \
+          SQL_USERNAME=<SQL_USERNAME> \
+          SQL_PASSWORD=<SQL_PASSWORD> \
+      --browse
+    ```
