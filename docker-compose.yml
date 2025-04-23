@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: src/frontend/Dockerfile
+    env_file:
+      - src/frontend/.env
+    network_mode: host
+
+  backend:
+    build:
+      context: .
+      dockerfile: src/backend/Dockerfile
+    env_file:
+      - src/backend/.env
+    network_mode: host

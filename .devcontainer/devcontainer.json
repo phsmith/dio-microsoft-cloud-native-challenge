@@ -38,7 +38,7 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [5000, 1433, 10000, 10001, 10002],
+	"forwardPorts": [1433, 5000, 10000, 10001, 10002],
 
     // Post create commands to run after the container is created.
 	"postCreateCommand": "bash .devcontainer/sql/postCreateCommand.sh 'database/Local/bin/Debug'",
