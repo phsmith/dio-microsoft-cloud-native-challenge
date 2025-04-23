@@ -1,1 +1,7 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
 .venv
+Debug
+products.json
